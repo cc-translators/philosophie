@@ -94,3 +94,11 @@
 \patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}
 \makeatother
 
+% Tune headings
+\usepackage{titlesec}
+
+\titleformat{\chapter}[display]
+  {\vspace{11mm}\Huge}
+  {}{10pt}
+  {\vspace{-25mm}\filcenter}
+\printindex

@@ -13,4 +13,18 @@
 
 \input{content}
 
+% Add index
+% Restore normal chapters
+\renewcommand*{\BRbooktitlestyle}[1]{\emph{#1}\vadjust{\nobreak}}
+% No page number on first page of index
+\makeatletter
+\def\imki@firstpagestyle{empty}
+\makeatother
+% Print index
+\titleformat{\chapter}[display]
+  {\vspace{11mm}\Huge}
+  {}{10pt}
+  {\vspace{-25mm}\filcenter}
+\printindex
+
 \end{document}
