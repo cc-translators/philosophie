@@ -56,16 +56,15 @@
 \newcommand*{\ocadr}{\mbox{---}\nobreak\,\nobreak}
 \newcommand*{\fcadr}{\unskip\nobreak\,\nobreak{}---}
 
-% Dedication
-\newcommand\intro[1]{%
-\begin{center}
-  \parbox{0.7\textwidth}{\centering
-    %\ornrule
-    \emph{#1}%\\[1cm]
-    %\ornrule
-  }
-\end{center}
-}
+\usepackage{epigraph}
+
+\usepackage{lettrine}
+\ifluatex
+  \newfontfamily\lettrinefont{LinLibertineIO}
+\else
+  \newcommand\lettrinefont{}
+\fi
+\renewcommand{\LettrineFontHook}{\lettrinefont\color[gray]{0.3}}
 
 % Wrapper for TeX4HT
 \newcommand{\Og}{\og}
