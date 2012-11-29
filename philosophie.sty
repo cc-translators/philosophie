@@ -1,0 +1,97 @@
+\ProvidesPackage{philosophie}
+
+\usepackage[french]{babel}
+\selectlanguage{french}
+
+\usepackage{ifluatex}
+\ifluatex
+\usepackage[
+            %draft,
+            hyphenation,
+            nosingleletter,
+            lastparline,
+            homeoarchy,
+            %rivers
+            ]{impnattypo}
+\fi
+
+\usepackage[all]{nowidow}
+
+\usepackage{numprint}
+
+\usepackage[breaklinks=true,unicode=true]{hyperref}
+\hypersetup{colorlinks,
+           citecolor=black,
+           filecolor=black,
+           linkcolor=black,
+           urlcolor=black,
+           bookmarksopen=true,
+           pdfpagelayout=TwoPageRight,
+           pdfauthor={Chuck Smith},
+           pdftitle={Sagesse pour Aujourd'hui},
+           pdftex}
+\usepackage{url}
+\usepackage[protrusion=true,final]{microtype}
+
+\usepackage{bibleref-french-colombe}
+
+% Make indexes
+\newcommand{\indextitle}{Index des r\'ef\'erences bibliques}
+\usepackage{imakeidx}
+\makeindex[title=\indextitle,intoc,options=-r -s bibleref.ist,columns=2]
+
+\ifluatex
+\usepackage{fontspec}
+\usepackage{xunicode}
+%\defaultfontfeatures{Mapping=tex-text}
+\defaultfontfeatures{Ligatures=TeX}
+%\setmainfont{Minion Pro}
+\setmainfont{EB Garamond}
+%\newfontfamily\telegramfont{Source Sans Pro}
+\newfontfamily\telegramfont{Inconsolata}
+\newfontfamily\liningfont[Numbers=Lining]{EB Garamond}
+\fi
+
+% cadratin
+\newcommand*{\ocadr}{\mbox{---}\nobreak\,\nobreak}
+\newcommand*{\fcadr}{\unskip\nobreak\,\nobreak{}---}
+
+% Dedication
+\newcommand\intro[1]{%
+\begin{center}
+  \parbox{0.7\textwidth}{\centering
+    %\ornrule
+    \emph{#1}%\\[1cm]
+    %\ornrule
+  }
+\end{center}
+}
+
+% Wrapper for TeX4HT
+\newcommand{\Og}{\og}
+\newcommand{\Fg}{\fg{}}
+
+% colon, frenchb's definition
+\makeatletter
+%\initiate@active@char{≡}%
+%\shorthandon{≡}
+%\declare@shorthand{french}{≡}{%
+\newcommand\frcolon{%
+      \ifhmode
+        \ifdim\lastskip>\z@
+          \unskip\penalty\@M\Fcolonspace
+        \else
+          \FDP@colonspace
+        \fi
+      \fi
+      \string:\space}
+%\declare@shorthand{system}{≡}{\string≡}
+%\bbl@activate{≡}
+\makeatother
+
+% Patch bibleref to sort Bible books properly
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\@bible@verse}{\@bv@idxsort{\csname br@#1\endcsname}}{\@bv@idxsort{#1}}
+\makeatother
+
