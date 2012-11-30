@@ -1,4 +1,4 @@
-BOOK_NAME=bonnenouvelle
+BOOK_NAME=philosophie
 TEXINPUTS=microtype:
 TODAY=$(shell date --iso)
 TARGETS=$(BOOK_NAME) $(BOOK_NAME)_numbered $(BOOK_NAME)_annotated
